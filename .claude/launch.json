@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "/Users/matiawagabaza/.nvm/versions/node/v24.14.1/bin/node",
+      "runtimeArgs": ["node_modules/.bin/vite", "--port", "5199", "--host"],
+      "port": 5199
+    }
+  ]
+}
