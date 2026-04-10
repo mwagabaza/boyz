@@ -1,12 +1,33 @@
+import { useEffect, useRef } from "react";
+
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let started = false;
+
+    function onScroll() {
+      if (!started && window.scrollY > 0) {
+        started = true;
+        video!.play();
+        window.removeEventListener("scroll", onScroll);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header className="relative min-h-dvh flex items-center justify-center overflow-hidden">
       {/* Video background */}
       <div className="absolute inset-0 z-0">
         <video
-          autoPlay
+          ref={videoRef}
           muted
-          loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
