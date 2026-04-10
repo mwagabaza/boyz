@@ -23,10 +23,10 @@ export default function Invitation() {
       </p>
 
       <a
-        href="mailto:the.bbm.boys@gmail.com"
+        href="mailto:grail@bbmboyz.com"
         className="reveal relative inline-block font-sans text-gold-primary text-lg md:text-xl font-medium tracking-wide gold-underline"
       >
-        the.bbm.boys@gmail.com
+        grail@bbmboyz.com
       </a>
 
       <div className="reveal mt-8">
