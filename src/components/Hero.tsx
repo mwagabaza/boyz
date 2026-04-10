@@ -1,30 +1,48 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoVisible, setVideoVisible] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    let started = false;
+    // Play after 1 second delay on mount
+    const startTimer = setTimeout(() => {
+      video.play();
+    }, 1000);
 
+    // Hide video when it ends
+    function onEnded() {
+      setVideoVisible(false);
+    }
+    video.addEventListener("ended", onEnded);
+
+    // Replay when user scrolls back to top
     function onScroll() {
-      if (!started && window.scrollY > 0) {
-        started = true;
+      if (window.scrollY === 0 && video!.ended) {
+        setVideoVisible(true);
+        video!.currentTime = 0;
         video!.play();
-        window.removeEventListener("scroll", onScroll);
       }
     }
-
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    return () => {
+      clearTimeout(startTimer);
+      video.removeEventListener("ended", onEnded);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
     <header className="relative min-h-dvh flex items-center justify-center overflow-hidden">
       {/* Video background */}
-      <div className="absolute inset-0 z-0">
+      <div
+        className="absolute inset-0 z-0 transition-opacity duration-1000"
+        style={{ opacity: videoVisible ? 1 : 0 }}
+      >
         <video
           ref={videoRef}
           muted
@@ -40,6 +58,13 @@ export default function Hero() {
       <div className="relative z-10 text-center px-6 max-w-2xl mx-auto">
         <p className="animate-fade-in delay-1 font-sans text-xs font-medium tracking-[0.3em] uppercase text-gold-primary mb-8">
           Est. 2016
+        </p>
+
+        <p
+          className="animate-fade-in delay-1 font-sans text-xs font-extralight tracking-[0.3em] uppercase text-gold-primary mb-2.5"
+          style={{ fontWeight: 200 }}
+        >
+          B &bull; B &bull; M
         </p>
 
         <h1
