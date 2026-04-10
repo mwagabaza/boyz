@@ -60,22 +60,24 @@ export default function Hero() {
           Est. 2016
         </p>
 
-        <p
-          className="animate-fade-in delay-1 font-sans text-xs font-extralight tracking-[0.3em] uppercase text-gold-primary mb-2.5"
-          style={{ fontWeight: 200 }}
-        >
-          B &bull; B &bull; M
-        </p>
+        <div className="inline-block relative">
+          <p
+            className="animate-fade-in delay-1 text-xs tracking-[0.35em] uppercase text-gold-primary text-right mb-1"
+            style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 100 }}
+          >
+            B B M
+          </p>
 
-        <h1
-          className="animate-fade-in delay-2 font-serif font-medium text-ivory leading-none"
-          style={{
-            fontSize: "clamp(3.5rem, 12vw, 8rem)",
-            textShadow: "0 0 60px rgba(201, 161, 76, 0.15)",
-          }}
-        >
-          BOYZ
-        </h1>
+          <h1
+            className="animate-fade-in delay-2 font-serif font-medium text-ivory leading-none"
+            style={{
+              fontSize: "clamp(3.5rem, 12vw, 8rem)",
+              textShadow: "0 0 60px rgba(201, 161, 76, 0.15)",
+            }}
+          >
+            BOYZ
+          </h1>
+        </div>
 
         <p
           className="animate-fade-in delay-3 font-jp text-ivory-muted mt-2"
