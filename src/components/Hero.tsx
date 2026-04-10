@@ -1,9 +1,20 @@
-import LightTrails from "./LightTrails";
-
 export default function Hero() {
   return (
     <header className="relative min-h-dvh flex items-center justify-center overflow-hidden">
-      <LightTrails />
+      {/* Video background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/bbmboyz-intro.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay for text legibility */}
+        <div className="absolute inset-0 bg-bg-deep/60" />
+      </div>
 
       <div className="relative z-10 text-center px-6 max-w-2xl mx-auto">
         <p className="animate-fade-in delay-1 font-sans text-xs font-medium tracking-[0.3em] uppercase text-gold-primary mb-8">
